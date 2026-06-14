@@ -12,7 +12,7 @@
         </nav>
 
         <div class="flex-1 flex justify-end">
-            <a href="/donasi" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400 transition">
+            <a href="/donation/create" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400 transition">
                 Donasi sekarang
             </a>
         </div>

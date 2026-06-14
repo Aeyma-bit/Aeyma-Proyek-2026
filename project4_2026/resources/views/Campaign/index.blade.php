@@ -4,6 +4,12 @@
 
 <h1 class="text-2xl font-bold mb-4">Daftar Campaign</h1>
 
+@if(session('success'))
+    <div class="bg-green-100 text-green-700 p-3 rounded mb-4 shadow-sm">
+        {{ session('success') }}
+    </div>
+@endif
+
 <a href="/campaign/create" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition shadow">
     Tambah Campaign
 </a>
@@ -23,13 +29,16 @@
             <td class="p-2">{{ $c->title }}</td>
             <td>{{ number_format($c->target_donation) }}</td>
             <td>{{ number_format($c->collected_donation) }}</td>
-            <td class="p-2 flex space-x-2">
-                <!-- Tombol Edit Warna Kuning -->
+            <td class="p-2 flex space-x-2 items-center">
+                
+                <a href="/donation/create/{{ $c->id }}" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition shadow-sm inline-block">
+                    Donasi Sekarang
+                </a>
+
                 <a href="/campaign/{{ $c->id }}/edit" class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded text-sm transition shadow-sm">
                     Edit
                 </a>
 
-                <!-- Tombol Hapus dengan Konfirmasi -->
                 <form action="/campaign/{{ $c->id }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus campaign ini?')" class="inline">
                     @csrf
                     @method('DELETE')
