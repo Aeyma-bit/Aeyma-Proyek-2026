@@ -6,6 +6,7 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\DocumentationFile;
 
 // Rute Halaman Utama & Statis
 Route::get('/', [HomeController::class, 'index']);
@@ -13,11 +14,15 @@ Route::get('/profil', [ProfilController::class, 'index']);
 Route::get('/kontak', [KontakController::class, 'index']);
 
 // Rute Resource Campaign
-Route::resource('campaign', CampaignController::class);
+Route::resource('campaign', CampaignController::class)->except(['show']);
 
-// ─── PERBAIKAN RUTE DONATION (URUTAN SANGAT PENTING) ───
 // 1. Rute custom dengan ID ditaruh paling atas
 Route::get('/donation/create/{campaign_id?}', [DonationController::class, 'create']);
+// 2. Rute resource hanya memakai method yang tersedia di DonationController
+Route::resource('donation', DonationController::class)->only(['index', 'store']);
 
-// 2. Rute resource bawaan dimatikan fungsi 'create'-nya agar tidak bentrok
-Route::resource('donation', DonationController::class)->except(['create']);
+Route::get('documentationfile', [DocumentationFile::class, 'index']);
+
+Route::post('documentationfile', [DocumentationFile::class, 'store']);
+
+Route::delete('/documentationfile/{id}', [DocumentationFile::class, 'destroy'])->name('documentation.destroy');
