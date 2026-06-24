@@ -10,6 +10,8 @@
             <a href="/profil" class="text-gray-700 hover:text-green-600 transition">Profil</a>
             <a href="/kontak" class="text-gray-700 hover:text-green-600 transition">Kontak</a>
             <a href="/documentationfile" class="text-gray-700 hover:text-green-600 transition">Dokumentasi</a>
+            <a href="/feeds" class="text-gray-700 hover:text-green-600 transition">Feeds</a>
+</nav>
         </nav>
 
         <div>
